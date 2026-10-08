@@ -252,6 +252,7 @@ export function StoreApp() {
                     <b></b>
 
                 </div>
+                <hr style={{ marginBottom: "15px"}} />
 
 
                 {/* PRODUCTS */}
