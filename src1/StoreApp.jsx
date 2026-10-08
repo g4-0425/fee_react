@@ -8,30 +8,22 @@ export function StoreApp() {
     const [category, setCategory] = useState("");
     const [brand, setBrand] = useState("");
     const [price, setPrice] = useState("");
+
     const [products, setProducts] = useState([]);
 
+    const [editId, setEditId] = useState(null);
+
+
     useEffect(() => {
+
         let data = localStorage.getItem("products");
 
         if (data) {
             setProducts(JSON.parse(data));
         }
+
     }, []);
 
-    const plist = products.map((p) => (
-        <li key={p.id} className="fx mb1">
-
-            <button
-                onClick={() => handleDelete(p.id)}
-                className="btn1 fyc bg30"
-            >
-                <BsTrash3 />
-            </button>
-
-            {p.id} {p.category} {p.brand} {p.price}/-
-
-        </li>
-    ));
 
     const handleAdd = (e) => {
 
@@ -44,7 +36,10 @@ export function StoreApp() {
             price: price
         };
 
-        const updateProducts = [...products, newProduct];
+        const updateProducts = [
+            ...products,
+            newProduct
+        ];
 
         setProducts(updateProducts);
 
@@ -58,6 +53,7 @@ export function StoreApp() {
         setBrand("");
         setPrice("");
     };
+
 
     const handleDelete = (del_id) => {
 
@@ -73,74 +69,240 @@ export function StoreApp() {
         );
     };
 
+
+    const handleEdit = (product) => {
+
+        setEditId(product.id);
+
+        setId(product.id);
+        setCategory(product.category);
+        setBrand(product.brand);
+        setPrice(product.price);
+    };
+
+
+    const handleUpdate = (e) => {
+
+        e.preventDefault();
+
+        const updateProducts = products.map(
+            (product) => {
+
+                if (product.id == editId) {
+
+                    return {
+                        id: id,
+                        category: category.trim(),
+                        brand: brand.trim(),
+                        price: price
+                    };
+
+                }
+
+                return product;
+            }
+        );
+
+        setProducts(updateProducts);
+
+        localStorage.setItem(
+            "products",
+            JSON.stringify(updateProducts)
+        );
+
+        setId("");
+        setCategory("");
+        setBrand("");
+        setPrice("");
+        setEditId(null);
+    };
+
+
     return (
-        <section className="hf bg20 p3">
 
-            <section className="w25 b1 p1">
+        <section
+            className="hf bg20 p3"
+            style={{
+                display: "flex",
+                gap: "20px",
+                alignItems: "flex-start"
+            }}
+        >
 
-                <h3>Add Product</h3>
+            {/* ADD PRODUCT */}
 
-                <form onSubmit={handleAdd} className="fy w15">
+            <section
+                className="b1 p1"
+                style={{
+                    width: "30%"
+                }}
+            >
+
+                <h3>
+                    {editId === null
+                        ? "Add Product"
+                        : "Edit Product"}
+                </h3>
+
+
+                <form
+                    onSubmit={
+                        editId === null
+                            ? handleAdd
+                            : handleUpdate
+                    }
+                    className="fy"
+                >
 
                     <input
                         type="text"
                         placeholder="ID"
                         value={id}
-                        onChange={(e) => setId(e.target.value)}
+                        onChange={(e) =>
+                            setId(e.target.value)
+                        }
                         required
                     />
+
 
                     <input
                         type="text"
                         placeholder="Category"
                         value={category}
-                        onChange={(e) => setCategory(e.target.value)}
+                        onChange={(e) =>
+                            setCategory(e.target.value)
+                        }
                         required
                     />
+
 
                     <input
                         type="text"
                         placeholder="Brand"
                         value={brand}
-                        onChange={(e) => setBrand(e.target.value)}
+                        onChange={(e) =>
+                            setBrand(e.target.value)
+                        }
                         required
                     />
+
 
                     <input
                         type="text"
                         placeholder="Price"
                         value={price}
-                        onChange={(e) => setPrice(e.target.value)}
+                        onChange={(e) =>
+                            setPrice(e.target.value)
+                        }
                         required
                     />
+
 
                     <button
                         type="submit"
                         className="btn2 bg40 mt1"
                     >
-                        Add
+
+                        {editId === null
+                            ? "Add"
+                            : "Update"}
+
                     </button>
 
                 </form>
 
             </section>
 
-            <br />
 
-            <section className="w25 b1 p1">
+            {/* LIST OF PRODUCTS */}
 
-                <h3>List of Products ({products.length})</h3>
+            <section
+                className="b1 p1"
+                style={{
+                    width: "60%"
+                }}
+            >
+
+                <h3>
+                    List of Products ({products.length})
+                </h3>
+
 
                 <br />
 
-                <ul
+
+                {/* HEADER */}
+
+                <div
                     style={{
-                        padding: "0",
-                        listStyleType: "none"
+                        display: "grid",
+                        gridTemplateColumns:
+                            "50px 120px 130px 120px 50px 50px",
+                        gap: "10px",
+                        alignItems: "center",
+                        marginBottom: "10px"
                     }}
                 >
-                    {plist}
-                </ul>
+
+                    <b>Id</b>
+                    <b>Category</b>
+                    <b>Brand</b>
+                    <b>Price/-</b>
+                    <b></b>
+                    <b></b>
+
+                </div>
+
+
+                {/* PRODUCTS */}
+
+                {products.map((p) => (
+
+                    <div
+                        key={p.id}
+                        style={{
+                            display: "grid",
+                            gridTemplateColumns:
+                                "30px 120px 130px 120px 50px 50px",
+                            gap: "10px",
+                            alignItems: "center",
+                            marginBottom: "8px"
+                        }}
+                    >
+
+                        <span>{p.id}</span>
+
+                        <span>{p.category}</span>
+
+                        <span>{p.brand}</span>
+
+                        <span>
+                            Rs. {p.price}/-
+                        </span>
+
+
+                        <button
+                            onClick={() =>
+                                handleEdit(p)
+                            }
+                            className="btn1 bg50"
+                        >
+                            <FiEdit />
+                        </button>
+
+
+                        <button
+                            onClick={() =>
+                                handleDelete(p.id)
+                            }
+                            className="btn1 bg30"
+                        >
+                            <BsTrash3 />
+                        </button>
+
+                    </div>
+
+                ))}
 
             </section>
 
