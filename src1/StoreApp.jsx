@@ -36,10 +36,9 @@ export function StoreApp() {
             price: price
         };
 
-        const updateProducts = [
-            ...products,
-            newProduct
-        ];
+     const updateProducts = [...products, newProduct];
+
+updateProducts.sort((a, b) => a.id - b.id);
 
         setProducts(updateProducts);
 
@@ -264,7 +263,7 @@ export function StoreApp() {
                         style={{
                             display: "grid",
                             gridTemplateColumns:
-                                "30px 120px 130px 120px 50px 50px",
+                                "30px 120px 130px 130px 20px 20px",
                             gap: "10px",
                             alignItems: "center",
                             marginBottom: "8px"
