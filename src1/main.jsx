@@ -2,18 +2,17 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 // import { App_usememo } from './components/App_usememo'
-import { App } from './App';
-
+// import { App } from './App';
 // import {StoreApp} from './StoreApp';
 
-//import { StateLifting } from './components/StateLifting';
+import {Page0} from "./pages/Page0";
 createRoot(document.getElementById('root')).render(
   <StrictMode>
 {/* <App_usememo/> */}
-<App/>
-
+{/* <App/> */}
 {/* <StoreApp/> */}
 
-{/* <StateLifting/> */}
+<Page0/>
+
   </StrictMode>
 )
