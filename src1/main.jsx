@@ -5,14 +5,14 @@ import './index.css'
 // import { App } from './App';
 // import {StoreApp} from './StoreApp';
 
-import {Page0} from "./pages/Page0";
+// import {Page0} from "./pages/Page0";
 createRoot(document.getElementById('root')).render(
   <StrictMode>
 {/* <App_usememo/> */}
 {/* <App/> */}
 {/* <StoreApp/> */}
+{/* <Page0/> */}
 
-<Page0/>
 
   </StrictMode>
 )
