@@ -1,0 +1,7 @@
+{
+    "students":[
+        {"id":1,"rollNumber":"101","name":"Simran Kaur","marks":98}
+    ],
+    "products":[],
+    "users":[]
+}
