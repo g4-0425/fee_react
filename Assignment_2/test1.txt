@@ -1,0 +1,52 @@
+// Question --- 
+//1 test: 3 most important topics: 
+min 25 max 50 words 
+summary
+caption max 5 words 
+
+//2 Arrange following in order of importance 
+js,props,ui,web application,forms,router,component,onsuubmit,multipages,react , 
+Zustand,ux,map,filter,onclick,state,buttons,links,validation,css,function,global state,nested routes
+
+
+// Answer ---
+
+Summary / Caption
+React Web Application Development
+
+//1 Most Important Topics (25–50 words)-
+1. React Components, Props and State – Understanding reusable components, 
+passing data through props, managing local and global state using React and Zustand.
+
+2. Routing and Multipage Applications – Using React Router to create multipage experiences with nested routes and navigation. React uses client-side routing,
+ where components change without loading a completely new HTML page, providing a smooth Single Page Application (SPA) experience.
+
+ 3. Forms and Event Handling – Building interactive forms with validation, 
+ handling onSubmit and onClick events, and using JavaScript functions such as map and filter to manage and display data.
+
+
+//2 Arrange in Order of Importance
+1. React
+2. Component
+3. Props
+4. State
+5. JavaScript (JS)
+6. UI
+7. Web Application
+8. CSS
+9. Function
+10. Global State
+11. Zustand
+12. Router
+13. Multipages
+14. Nested Routes
+15. Forms
+16. Validation
+17. onSubmit
+18. onClick
+19. Buttons
+20. Links
+21. map
+22. filter
+23. UX 
+
