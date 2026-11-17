@@ -9,7 +9,7 @@ import "react-toastify/ReactToastify.css";
 const Home = lazy(() => import("./Home"));
 
 //import {StudentsApp} from "./StudentsApp";
-const StudentsApp = lazy(() => import("./StudentsApp"));
+const StudentsApp = lazy(() => import("./studentsApp"));
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>

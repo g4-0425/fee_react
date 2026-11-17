@@ -1,22 +1,31 @@
-import imgUrl from "./images/img005.jpg";
+
+import imgUrl from "./images/student.png";
 import { useNavigate } from "react-router-dom";
 
-export default function Home(){
+export function Home() {
     const navigate = useNavigate();
-    function login(){
-        navigate("/login");
-    }
+
     return (
-        <div className="hf bgi " style={{ backgroundImage: `url(${imgUrl})`}}>
-            <nav className="fxc p1">
-                <button
-                onClick={login}
-                className="bg20 b1 fsm px2 sh2"
-                style={{ color: "silver"}}
-                >
-                    Login
-                </button>
-            </nav>
+        <div className="home">
+            <h1>Welcome to Student Management App</h1>
+
+            <img
+                src={imgUrl}
+                alt="Student Management App"
+                style={{
+                    width: "100%",
+                    maxWidth: "600px",
+                    height: "auto",
+                    borderRadius: "12px"
+                }}
+            />
+
+            <p>Manage your student records easily.</p>
+
+            <button onClick={() => navigate("/login")}>
+                Login
+            </button>
         </div>
     );
 }
+
