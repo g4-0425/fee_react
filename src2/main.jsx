@@ -1,3 +1,4 @@
+
 import { lazy, StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -8,16 +9,27 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Home = lazy(() => import("./Home"));
 const StudentsApp = lazy(() => import("./studentsApp"));
+const AddForm = lazy(() => import("./AddForm"));
+const UpdateForm = lazy(() => import("./UpdateForm"));
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
         <Router>
-            <ToastContainer position="top-right" autoClose={2000} />
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+            />
 
             <Suspense fallback={<p>Loading...</p>}>
                 <Routes>
                     <Route path="/" element={<Home />} />
+
                     <Route path="/login" element={<StudentsApp />} />
+
+                    <Route path="/add" element={<AddForm />} />
+
+                    <Route path="/update/:id" element={<UpdateForm />} />
+
                     <Route path="/logout" element={<Home />} />
                 </Routes>
             </Suspense>

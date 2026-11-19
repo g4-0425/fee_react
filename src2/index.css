@@ -633,4 +633,72 @@ textarea {
   .c3 {
     width: 30rem;
   }
+
+
+/* Student dashboard alignment */
+
+.student-header,
+.student-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr 1fr 2fr;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.student-header {
+    padding: 12px;
+}
+
+.student-row {
+    padding: 12px;
+    margin-top: 10px;
+}
+
+.student-header span,
+.student-row span {
+    width: auto;
+    text-align: center;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Add student form box */
+
+.add-form-container {
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.add-form-box {
+    width: 350px;
+    max-width: 100%;
+    padding: 25px;
+    border: 1px solid skyblue;
+    border-radius: 12px;
+    background-color: hsl(270, 20%, 15%);
+    color: skyblue;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.add-form-box input {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.add-form-box label {
+    display: block;
+    margin-bottom: 5px;
+}
+
 }

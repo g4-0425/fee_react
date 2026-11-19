@@ -12,86 +12,82 @@ export default function StudentsApp() {
         getRecords();
     }, [getRecords]);
 
-    function updateRecord(id) {
+    function addStudent() {
+        navigate("/add");
+    }
+
+    function updateStudent(id) {
         navigate(`/update/${id}`);
+    }
+
+    function removeStudent(id) {
+        deleteRecord(id);
     }
 
     return (
         <div className="hf bg20">
+
             <nav className="bg50 fxc jsb p3">
                 <div>LOGO</div>
 
-                <button onClick={() => navigate("/")}>
+                <button className="bg10" onClick={() => navigate("/")}>
                     Logout
                 </button>
             </nav>
 
-            <div className="p2" style={{ width: "800px", maxWidth: "100%" }}>
+            <div className="p2" style={{ maxWidth: "1000px" }}>
+
                 <h1>Student Dashboard</h1>
 
-                <div
-                    className="fx p1 b1 br2 bg72"
-                    style={{ textAlign: "center", color: "white" }}
-                >
+                <div className="p2 b1 br2 bg72 mt1 mb1">
                     Total Students: {students.length}
                 </div>
 
-                {/* <button
-                    className="bg50 btn1"
-                    onClick={() => navigate("/add")}
-                >
+                <button className="bg50 btn1 mb2" onClick={addStudent}>
                     Add Student
-                </button> */}
+                </button>
 
-                <h2>All Students</h2>
+                <h2 className="mb1">All Students</h2>
 
-                <div className="fx p1 bg50 br2">
-                    <span style={{ flex: 1 }}>Section</span>
-                    <span style={{ flex: 1 }}>ID</span>
-                    <span style={{ flex: 2 }}>Name</span>
-                    <span style={{ flex: 1 }}>Marks</span>
-                    <span style={{ flex: 2 }}>Actions</span>
+                <div className="student-header bg50 br2">
+                    <span>Section</span>
+                    <span>ID</span>
+                    <span>Name</span>
+                    <span>Marks</span>
+                    <span>Actions</span>
                 </div>
 
                 {students.length === 0 ? (
-                    <p style={{ textAlign: "center", color: "white" }}>
-                        No students found. Please add a student.
-                    </p>
+                    <p className="p2">No students found. Please add a student.</p>
                 ) : (
                     students.map((student) => (
-                        <div
-                            key={student.id}
-                            className="fx p1 bg71 br2 mt1"
-                            style={{ alignItems: "center", textAlign: "center" }}
-                        >
-                            <span style={{ flex: 1 }}>{student.section}</span>
+                        <div className="student-row bg71 br2" key={student.id}>
 
-                            <span style={{ flex: 1 }}>{student.id}</span>
+                            <span>{student.section}</span>
+                            <span>{student.id}</span>
+                            <span>{student.name}</span>
+                            <span>{student.marks}</span>
 
-                            <div style={{ flex: 2 }}>
-                                {student.name}
-                            </div>
-
-                            <span style={{ flex: 1 }}>{student.marks}</span>
-
-                            <div className="fx" style={{ flex: 2, gap: "5px" }}>
+                            <div className="actions">
                                 <button
-                                    onClick={() => updateRecord(student.id)}
                                     className="bg50 btn1"
+                                    onClick={() => updateStudent(student.id)}
                                 >
                                     Edit
                                 </button>
 
                                 <button
-                                    onClick={() => deleteRecord(student.id)}
                                     className="bg30 btn1"
+                                    onClick={() => removeStudent(student.id)}
                                 >
                                     Delete
                                 </button>
                             </div>
+
                         </div>
                     ))
                 )}
+
             </div>
         </div>
     );
