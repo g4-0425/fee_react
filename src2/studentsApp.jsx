@@ -1,58 +1,98 @@
 
-return (
-    <div className="student-page">
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useStudentStore } from "./useStudentStore";
 
-        <nav className="student-nav">
-            <h2>Student Management</h2>
+export default function StudentsApp() {
+    const navigate = useNavigate();
 
-            <button className="bg20 b1" onClick={() => navigate("/")}>
-                Logout
-            </button>
-        </nav>
+    const { students, getRecords, deleteRecord } = useStudentStore();
 
-        <main className="student-content">
+    useEffect(() => {
+        getRecords();
+    }, [getRecords]);
 
-            <div className="student-heading">
-                <h1>Student Dashboard</h1>
-                <p>Manage your student records easily.</p>
-            </div>
+    function updateRecord(id) {
+        navigate(`/update/${id}`);
+    }
 
-            <form onSubmit={saveStudent} className="student-form">
-                <h2>{editId ? "Update Student" : "Add Student"}</h2>
+    return (
+        <div className="hf bg20">
+            <nav className="bg50 fxc jsb p3">
+                <div>LOGO</div>
 
-                {/* Keep your existing name, email and age inputs here */}
-
-                <button type="submit" className="bg50">
-                    {editId ? "Update Student" : "Add Student"}
+                <button onClick={() => navigate("/")}>
+                    Logout
                 </button>
+            </nav>
 
-                {editId && (
-                    <button type="button" className="bg30" onClick={clearForm}>
-                        Cancel
-                    </button>
-                )}
-            </form>
+            <div className="p2" style={{ width: "800px", maxWidth: "100%" }}>
+                <h1>Student Dashboard</h1>
 
-            <section className="student-list">
-                <h2>All Students ({students.length})</h2>
-
-                <input
-                    className="student-search"
-                    type="text"
-                    placeholder="Search student by name..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                />
-
-                {/* Keep your existing loading and table logic here */}
-
-                <div className="student-table-wrapper">
-                    <table className="student-table">
-                        {/* Keep your existing thead and tbody here */}
-                    </table>
+                <div
+                    className="fx p1 b1 br2 bg72"
+                    style={{ textAlign: "center", color: "white" }}
+                >
+                    Total Students: {students.length}
                 </div>
-            </section>
 
-        </main>
-    </div>
-);
+                {/* <button
+                    className="bg50 btn1"
+                    onClick={() => navigate("/add")}
+                >
+                    Add Student
+                </button> */}
+
+                <h2>All Students</h2>
+
+                <div className="fx p1 bg50 br2">
+                    <span style={{ flex: 1 }}>Section</span>
+                    <span style={{ flex: 1 }}>ID</span>
+                    <span style={{ flex: 2 }}>Name</span>
+                    <span style={{ flex: 1 }}>Marks</span>
+                    <span style={{ flex: 2 }}>Actions</span>
+                </div>
+
+                {students.length === 0 ? (
+                    <p style={{ textAlign: "center", color: "white" }}>
+                        No students found. Please add a student.
+                    </p>
+                ) : (
+                    students.map((student) => (
+                        <div
+                            key={student.id}
+                            className="fx p1 bg71 br2 mt1"
+                            style={{ alignItems: "center", textAlign: "center" }}
+                        >
+                            <span style={{ flex: 1 }}>{student.section}</span>
+
+                            <span style={{ flex: 1 }}>{student.id}</span>
+
+                            <div style={{ flex: 2 }}>
+                                {student.name}
+                            </div>
+
+                            <span style={{ flex: 1 }}>{student.marks}</span>
+
+                            <div className="fx" style={{ flex: 2, gap: "5px" }}>
+                                <button
+                                    onClick={() => updateRecord(student.id)}
+                                    className="bg50 btn1"
+                                >
+                                    Edit
+                                </button>
+
+                                <button
+                                    onClick={() => deleteRecord(student.id)}
+                                    className="bg30 btn1"
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    ))
+                )}
+            </div>
+        </div>
+    );
+}

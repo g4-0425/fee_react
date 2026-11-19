@@ -2,7 +2,7 @@
 import imgUrl from "./images/student.png";
 import { useNavigate } from "react-router-dom";
 
-export function Home() {
+export default function Home() {
     const navigate = useNavigate();
 
     return (

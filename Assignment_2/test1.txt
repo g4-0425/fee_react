@@ -15,29 +15,40 @@ Summary / Caption
 React Web Application Development
 
 //1 Most Important Topics (25–50 words)-
-caption- Reusable Components and State Management
+--caption- Reusable Components and State Management
 1. React Components, Props and State – Understanding reusable components, 
 passing data through props, managing local and global state using React and Zustand.
 
-caption-Navigation Without Full Page Reload
-2. Routing and Multipage Applications – Using React Router to create multipage experiences with nested routes and navigation. React uses client-side routing,
- where components change without loading a completely new HTML page, providing a smooth Single Page Application (SPA) experience.
+--caption-Navigation Without Full Page Reload
+2. Routing and Multipage Applications – Using React Router to create multipage
+ experiences with nested routes and navigation. React uses client-side routing,
+ where components change without loading a completely new HTML page,
+  providing a smooth Single Page Application (SPA) experience.
 
-caption-Interactive Forms and Validation
+--caption-Interactive Forms and Validation
  3. Forms and Event Handling – Building interactive forms with validation, 
  handling onSubmit and onClick events, and using JavaScript functions such as map and filter to manage and display data.
 
-caption-Array Manipulation and Data Rendering
+--caption-Array Manipulation and Data Rendering
 4. JavaScript Functions (map and filter)-
 Understanding JavaScript functions such as map() and filter() to iterate over arrays,
- transform data, filter records, and dynamically display information in components
+ transform data, filter records, and dynamically display information in components.
 
-
-caption-Shared State Across Components
+--caption-Shared State Across Components
 5.Global State Management (Zustand)- 
 Understanding global state management using Zustand 
 to share and update data across multiple React components without 
 passing props through every next component.
+
+--caption- Styling and Responsive UI
+6. CSS-
+Understanding how to style React components using CSS, including layouts, colours,
+ spacing, Flexbox, Grid and responsive design to create attractive user interfaces.
+
+--caption- Logic and Event Handling
+7. Functions-
+Understanding JavaScript functions to handle events, perform operations,
+ process data and make React components interactive.
 
 
 
